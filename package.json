@@ -1,0 +1,58 @@
+{
+  "name": "linkup",
+  "version": "1.0.0",
+  "description": "a news aggregator for EPL teams",
+  "main": "./server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp & nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svangordon/linkup.git"
+  },
+  "author": "Svangordon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/svangordon/linkup/issues"
+  },
+  "homepage": "https://github.com/svangordon/linkup#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.7.1",
+    "cron": "^1.1.0",
+    "express": "^4.13.4",
+    "express-session": "^1.14.0",
+    "feedparser": "^1.1.4",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "iconv-lite": "^0.4.13",
+    "jshint": "^2.9.2",
+    "jsonwebtoken": "^5.7.0",
+    "moment": "^2.12.0",
+    "mongoose": "^4.4.6",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "pubsubhubbub": "^0.4.1",
+    "request": "^2.69.0",
+    "twitter": "^1.2.5",
+    "xml2js": "^0.4.16"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.13.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-data": "^1.2.1",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-stylus": "^2.5.0",
+    "gulp-util": "^3.0.7",
+    "jshint-stylish": "^2.2.1"
+  }
+}
