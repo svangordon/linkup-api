@@ -18,10 +18,10 @@ const paths = {
   scripts: ['./src/**/*.js']
 };
 
-gulp.task('default', ['watch', 'build-server']);
+gulp.task('default', ['clean', 'dev']);
 
 gulp.task('clean', () => {
-  return del(['build']);
+  return del(['dist']);
 });
 
 gulp.task('dev', ['compile'], () => {
