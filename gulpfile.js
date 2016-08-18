@@ -18,7 +18,9 @@ const paths = {
   scripts: ['./src/**/*.js']
 };
 
-gulp.task('default', ['clean', 'dev']);
+gulp.task('default', ['clean'], () => {
+  gulp.start('dev', 'compile');
+});
 
 gulp.task('clean', () => {
   return del(['dist']);
@@ -38,11 +40,11 @@ gulp.task('dev', ['compile'], () => {
 gulp.task('compile', () => {
   const stream = gulp.src(paths.scripts)
       .pipe(sourcemaps.init())
-      .pipe(cache.filter())
+      // .pipe(cache.filter())
       .pipe(babel({
         presets: ['es2015']
       }))
-      .pipe(cache.cache())
+      // .pipe(cache.cache())
       .pipe(sourcemaps.write())
       .pipe(gulp.dest('dist'));
 
