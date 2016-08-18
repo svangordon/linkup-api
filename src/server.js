@@ -7,8 +7,8 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   // apiRoutes = require('./api_routes.js'),
   cors = require('cors'),
-  config = require('./config'),
-  mongodb_url = 'mongodb://localhost:sudo27017/gaffer',
+  config = require('../config'),
+  mongodb_url = 'mongodb://localhost:27017/gaffer',
   jwt = require('jsonwebtoken'),
   cookieParser = require('cookie-parser');
 
@@ -67,10 +67,10 @@ app.use(cors())
 // Static content
 app.use(express.static(__dirname + '/../public'))
 
-// Homepage
-app.get('/', function (req, res) {
-  res.sendFile('html/index.html', {root: './public'})
-})
+// // Homepage
+// app.get('/', function (req, res) {
+//   res.sendFile('html/index.html', {root: './public'})
+// })
 
 // app.get('/dash', function (req, res) {
 //   res.sendFile('html/index.html', {root: './public'})
@@ -84,7 +84,7 @@ app.post('/api/authenticate',
   passport.authenticate('local', {failureRedirect: '/login',
                                   failureFlash: true }),
   function(req, res) { // sucess handler
-    res.json({ //TODO: Make sure that passport is handling saving a token properly, then nix token
+    res.json({
       success: true,
       message: 'Now you have a token'
     });
@@ -92,11 +92,11 @@ app.post('/api/authenticate',
 );
 
 app.use('/api/fd', fdRoutes)
-app.use('/api/tw', twRoutes)
-app.use('/api/users', userRoutes)
-// app.use(authCtrls.middleware)
-app.use('/api/me', meRoutes)
-app.use('/api/rss', rssRoutes)
+// app.use('/api/tw', twRoutes)
+// app.use('/api/users', userRoutes)
+// // app.use(authCtrls.middleware)
+// app.use('/api/me', meRoutes)
+// app.use('/api/rss', rssRoutes)
 
 // Set the port to run
 app.listen(app.get('port'), function () {

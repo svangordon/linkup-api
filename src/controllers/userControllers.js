@@ -1,5 +1,5 @@
 var db = require('../models.js'),
-  config = require('../config'),
+  config = require('../../config'),
   request = require('request'),
   jwt = require('jsonwebtoken');
 

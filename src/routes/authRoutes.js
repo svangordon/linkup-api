@@ -1,7 +1,7 @@
 // =====START GLOBAL VAR DECLARATION=====
 var authCtrls = require('../controllers/authControllers.js');
   var authRouter = require('express').Router();
-  var config = require('../config');
+  var config = require('../../config');
   var db = require('../models');
 // =====END GLOBAL VAR DECLARATION
 // =======================================

@@ -2,8 +2,8 @@
 var //ctrls = require('./controllers.js'),
   fdCtrls = require('../controllers/fdControllers.js'),
   fdRouter = require('express').Router(),
-  config = require('../config'),
-  db = require('../models')
+  config = require('../../config'),
+  db = require('../models');
 // =====END GLOBAL VAR DECLARATION
 // =======================================
 fdRouter.route('/test')

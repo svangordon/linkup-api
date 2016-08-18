@@ -1,7 +1,7 @@
 // =====START GLOBAL VAR DECLARATION=====
 var twCtrls = require('../controllers/twControllers.js'),
   apiRouter = require('express').Router(),
-  config = require('../config'),
+  config = require('../../config'),
   db = require('../models')
 // =====END GLOBAL VAR DECLARATION
 // =======================================

@@ -1,12 +1,10 @@
 
 var db = require('../models'),
-  config = require('../config'),
+  config = require('../../config'),
   request = require('request'),
   moment = require('moment'),
-  feedUrls = require('../data/rssfeeds.json'),
-  fetchRss = require('../services/ballboy.js')
-  util = require('util')
-  ;
+  feedUrls = require('../data/rssfeeds.js'),
+  fetchRss = require('../services/ballboy.js');
 
 module.exports = {
   team : function (req, res) {

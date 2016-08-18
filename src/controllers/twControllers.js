@@ -1,5 +1,5 @@
 var db = require('../models'),
-  config = require('../config'),
+  config = require('../../config'),
   request = require('request'),
   moment = require('moment'),
   Twitter = require('twitter');

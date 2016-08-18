@@ -2,7 +2,7 @@
 // but who knows, maybe that's just because i learned passport more recently.
 
 var db = require('../models'),
-  config = require('../config'),
+  config = require('../../config'),
   request = require('request'),
   jwt = require('jsonwebtoken');
 

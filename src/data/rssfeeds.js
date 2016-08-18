@@ -1,4 +1,4 @@
-{
+module.exports = {
   "afc" : "http://www.football.co.uk/teams/arsenal/rss.xml",
   "mufc" : "http://www.football.co.uk/teams/manchester-united/rss.xml",
   "thfc" : "http://www.football.co.uk/teams/tottenham-hotspur/rss.xml",

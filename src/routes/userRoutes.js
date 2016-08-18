@@ -1,7 +1,7 @@
 // =====START GLOBAL VAR DECLARATION=====
 var userCtrls = require('../controllers/userControllers.js');
   var userRouter = require('express').Router();
-  var config = require('../config');
+  var config = require('../../config');
   var db = require('../models');
 // =====END GLOBAL VAR DECLARATION
 // =======================================

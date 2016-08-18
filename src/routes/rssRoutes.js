@@ -1,7 +1,7 @@
 // =====START GLOBAL VAR DECLARATION=====
 var rssCtrls = require('../controllers/rssControllers.js'),
   rssRouter = require('express').Router(),
-  config = require('../config'),
+  config = require('../../config'),
   db = require('../models');
 // =====END GLOBAL VAR DECLARATION
 // =======================================

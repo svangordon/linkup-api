@@ -1,5 +1,5 @@
 var db = require('../models'),
-  config = require('../config'),
+  config = require('../../config'),
   jwt = require('jsonwebtoken');
 
 module.exports = {

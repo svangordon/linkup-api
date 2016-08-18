@@ -23,7 +23,7 @@ var mongoose = require('mongoose'),
     , name : {type: String} // what we pass around between processes
     , link : {type: String}
     , defaultIcon : {type: String} // href to a default icon
-  })
+  }),
 
   // User Schema
   // For users, obv
@@ -63,7 +63,7 @@ var mongoose = require('mongoose'),
 
   // Options Schema
   // I haven't figured out what the opts are yet, so...
-  optionsSchema = new Schema({
+  let optionsSchema = new Schema({
     team : {type: String}
   })
 
