@@ -36,19 +36,18 @@ gulp.task('dev', ['compile'], () => {
 })
 
 gulp.task('compile', () => {
-    const stream = gulp.src(paths.scripts)
-        .pipe(sourcemaps.init())
-        .pipe(cache.filter())
-        .pipe(babel({
-          presets: ['es2015']
-        }))
-        .pipe(cache.cache())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist'));
+  const stream = gulp.src(paths.scripts)
+      .pipe(sourcemaps.init())
+      .pipe(cache.filter())
+      .pipe(babel({
+        presets: ['es2015']
+      }))
+      .pipe(cache.cache())
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest('dist'));
 
-    return stream // forces compile to by synchronous
-  }
-);
+  return stream // forces compile to by synchronous
+});
 
 gulp.task('watch', () => {
   gulp.watch([paths.scripts, paths.json], ['build-server'])
