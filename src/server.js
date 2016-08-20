@@ -92,11 +92,26 @@ app.post('/api/authenticate',
 );
 
 app.use('/api/fd', fdRoutes)
-// app.use('/api/tw', twRoutes)
-// app.use('/api/users', userRoutes)
-// // app.use(authCtrls.middleware)
+app.use('/api/tw', twRoutes)
+app.use('/api/users', userRoutes)
+// app.use(authCtrls.middleware)
 // app.use('/api/me', meRoutes)
-// app.use('/api/rss', rssRoutes)
+app.use('/api/rss', rssRoutes)
+
+app.get('/loadUser', authorize, () => {
+  res.send(req.user || null);  // get the user out of session and send it back
+})
+
+// route middleware to make sure a user is logged in
+function authorize(req, res, next) {
+  console.log('authorizing');
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    console.log('req.isAuth ==', req.isAuthenticated());
+    res.status(401).send('not authorized');
+  }
+}
 
 // Set the port to run
 app.listen(app.get('port'), function () {
