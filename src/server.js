@@ -10,7 +10,8 @@ var express = require('express'),
   config = require('../config'),
   mongodb_url = 'mongodb://localhost:27017/gaffer',
   jwt = require('jsonwebtoken'),
-  cookieParser = require('cookie-parser');
+  cookieParser = require('cookie-parser'),
+  session = require('express-session');
 
 
 
@@ -42,7 +43,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 // // for passport
-app.use(cookieParser());
+// app.use(cookieParser()); // cookier parser no longer needed by passport
 // app.use(express.session({ secret: 'jonjo shelvey\'s personal chef' }));
 // app.use(passport.initialize());
 // app.use(passport.session());
@@ -57,8 +58,8 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization')
   next()
 })
-app.use(bodyParser.json())
-app.use(cors())
+app.use(bodyParser.json());
+app.use(cors());
 
 // end region set up middleware
 
@@ -81,11 +82,15 @@ app.use(express.static(__dirname + '/../public'))
 // // TODO: I moved the middleware below all the routes because it was authenticating the create users routes, should fix that and move back
 // // endpoints
 app.post('/api/authenticate',
-  passport.authenticate('local', {failureRedirect: '/login',
-                                  failureFlash: true }),
+  passport.authenticate('local', {
+    successRedirect: '/dash',
+    failureRedirect: '/login',
+    failureFlash: true
+  }),
   function(req, res) { // sucess handler
     var user = req.user;
     delete user.password;
+    // req.login();
     res.json(user);
   }
 );
