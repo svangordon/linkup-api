@@ -84,9 +84,9 @@ app.post('/api/authenticate',
   passport.authenticate('local', {failureRedirect: '/login',
                                   failureFlash: true }),
   function(req, res) { // sucess handler
-    console.log('req.isAuth==', req.isAuthenticated());
-    console.log('req.user==', req.user);
-    res.json(req.user);
+    var user = req.user;
+    delete user.password;
+    res.json(user);
   }
 );
 
