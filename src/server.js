@@ -84,10 +84,9 @@ app.post('/api/authenticate',
   passport.authenticate('local', {failureRedirect: '/login',
                                   failureFlash: true }),
   function(req, res) { // sucess handler
-    res.json({
-      success: true,
-      message: 'Now you have a token'
-    });
+    console.log('req.isAuth==', req.isAuthenticated());
+    console.log('req.user==', req.user);
+    res.json(req.user);
   }
 );
 
@@ -104,8 +103,9 @@ app.get('/loadUser', authorize, () => {
 
 // route middleware to make sure a user is logged in
 function authorize(req, res, next) {
-  console.log('authorizing');
+  console.log('checking auth');
   if (req.isAuthenticated()) {
+    console.log('auth\'d');
     next();
   } else {
     console.log('req.isAuth ==', req.isAuthenticated());

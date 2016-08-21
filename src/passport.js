@@ -19,6 +19,7 @@ exports.init = function init (app) {
 
   passport.deserializeUser(function(id, done) {
     db.User.findById(id, function(err, user) {
+      if (err) {console.error('deserialize error')}
       done(err, user);
     });
   });
