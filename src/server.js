@@ -83,13 +83,13 @@ app.use(express.static(__dirname + '/../public'))
 // // endpoints
 app.post('/api/authenticate',
   passport.authenticate('local', {
-    successRedirect: '/dash',
     failureRedirect: '/login',
     failureFlash: true
   }),
   function(req, res) { // sucess handler
     var user = req.user;
     delete user.password;
+    console.log('cook ==', req)
     // req.login();
     res.json(user);
   }
