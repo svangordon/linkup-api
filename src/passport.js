@@ -8,6 +8,8 @@ var passport = require('passport'),
 
 module.exports = exports = {};
 
+// console.log('db.User ==', db.User)
+
 // init function to setup passport
 exports.init = function init (app) {
   app.use(session({

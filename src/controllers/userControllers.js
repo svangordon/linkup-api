@@ -9,7 +9,7 @@ var db = require('../models.js'),
       var user = new db.User();
       // programmatically set user info
       // console.log('creating new user', req.body);
-      for (i in req.body) {
+      for (let i in req.body) {
         user[i] = req.body[i];
       }
 

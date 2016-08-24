@@ -12,7 +12,8 @@ var express = require('express'),
   jwt = require('jsonwebtoken'),
   cookieParser = require('cookie-parser'),
   session = require('express-session'),
-  util = require('util');
+  util = require('util'),
+  db = require('./models');
 
 
 
@@ -85,9 +86,23 @@ app.use(express.static(__dirname + '/../public'))
 // // TODO: I moved the middleware below all the routes because it was authenticating the create users routes, should fix that and move back
 // // endpoints
 app.post('/api/authenticate',
+  (req, res, next) => {
+    console.log('req.body ==', req.body);
+    db.User.findOne({ "username": req.username}, (err, user) => {
+      console.log('user ==', user);
+      if (err) {
+        console.log('error', err);
+        next()
+      }
+      if (user === null) { next() } else {
+        console.log('validPassword shows', user.validPassword(req.password))
+      }
+      next()
+    });
+  },
   passport.authenticate('basic', { session: false }),
   function(req, res) { // sucess handler
-    console.log('cook ==', req)
+    console.log('cook ==')
     res.json(req.user);
   }
 );
