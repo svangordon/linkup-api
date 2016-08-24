@@ -11,7 +11,8 @@ var express = require('express'),
   mongodb_url = 'mongodb://localhost:27017/gaffer',
   jwt = require('jsonwebtoken'),
   cookieParser = require('cookie-parser'),
-  session = require('express-session');
+  session = require('express-session'),
+  util = require('util');
 
 
 
@@ -42,14 +43,15 @@ app.use(bodyParser.urlencoded({
   extended : true
 }))
 
+// app.use(bodyParser.json());
+
 // // for passport
-// app.use(cookieParser()); // cookier parser no longer needed by passport
+app.use(cookieParser()); // cookier parser no longer needed by passport
 // app.use(express.session({ secret: 'jonjo shelvey\'s personal chef' }));
 // app.use(passport.initialize());
 // app.use(passport.session());
 // app.use(app.router);
 
-var passport = require('./passport').init(app);
 
 // Why is this here?i
 app.use(function (req, res, next) {
@@ -61,6 +63,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json());
 app.use(cors());
 
+var passport = require('./passport').init(app);
 // end region set up middleware
 
 // Initialize routes to use
@@ -82,16 +85,10 @@ app.use(express.static(__dirname + '/../public'))
 // // TODO: I moved the middleware below all the routes because it was authenticating the create users routes, should fix that and move back
 // // endpoints
 app.post('/api/authenticate',
-  passport.authenticate('local', {
-    failureRedirect: '/login',
-    failureFlash: true
-  }),
+  passport.authenticate('basic', { session: false }),
   function(req, res) { // sucess handler
-    var user = req.user;
-    delete user.password;
     console.log('cook ==', req)
-    // req.login();
-    res.json(user);
+    res.json(req.user);
   }
 );
 
