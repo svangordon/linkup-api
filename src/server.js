@@ -5,7 +5,7 @@ var express = require('express'),
   logger = require('morgan'),
   mongoose = require('mongoose'),
   bodyParser = require('body-parser'),
-  // apiRoutes = require('./api_routes.js'),
+  path = require('path'),
   cors = require('cors'),
   config = require('../config'),
   mongodb_url = 'mongodb://localhost:27017/gaffer',
@@ -20,13 +20,13 @@ var express = require('express'),
 // ==============================
 // | Routers Requires
 // ==============================
-  var fdRoutes = require('./routes/fdRoutes.js')
-  , twRoutes = require('./routes/twRoutes.js')
-  , userRoutes = require('./routes/userRoutes.js')
-  , authRoutes = require('./routes/authRoutes.js')
-  , authCtrls = require('./controllers/authControllers.js')
-  , meRoutes = require('./routes/meRoutes.js')
-  , rssRoutes = require('./routes/rssRoutes.js')
+  // var fdRoutes = require('./routes/fdRoutes.js')
+  // , twRoutes = require('./routes/twRoutes.js')
+  // , userRoutes = require('./routes/userRoutes.js')
+  // , authRoutes = require('./routes/authRoutes.js')
+  // , authCtrls = require('./controllers/authControllers.js')
+  // , meRoutes = require('./routes/meRoutes.js')
+  // , rssRoutes = require('./routes/rssRoutes.js')
 
 // ===============================
 // Connect to DB on Digital Ocean
@@ -88,14 +88,14 @@ app.use(express.static(__dirname + '/../public'))
 app.post('/api/authenticate',
   (req, res, next) => {
     console.log('req.body ==', req.body);
-    db.User.findOne({ "username": req.username}, (err, user) => {
+    db.User.findOne({ "username": req.body.username}, function(err, user) {
       console.log('user ==', user);
       if (err) {
         console.log('error', err);
         next()
       }
       if (user === null) { next() } else {
-        console.log('validPassword shows', user.validPassword(req.password))
+        console.log('validPassword shows', user.validPassword(req.body.password))
       }
       next()
     });
@@ -107,12 +107,12 @@ app.post('/api/authenticate',
   }
 );
 
-app.use('/api/fd', fdRoutes)
-app.use('/api/tw', twRoutes)
-app.use('/api/users', userRoutes)
-// app.use(authCtrls.middleware)
-// app.use('/api/me', meRoutes)
-app.use('/api/rss', rssRoutes)
+// app.use('/api/fd', fdRoutes)
+// app.use('/api/tw', twRoutes)
+// app.use('/api/users', userRoutes)
+// // app.use(authCtrls.middleware)
+// // app.use('/api/me', meRoutes)
+// app.use('/api/rss', rssRoutes)
 
 app.get('/loadUser', authorize, () => {
   res.send(req.user || null);  // get the user out of session and send it back

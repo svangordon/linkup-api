@@ -42,7 +42,7 @@ exports.init = function init (app) {
     function(username, password, done) {
       console.log('basic is firing');
       db.User.findOne({ username: username}, (err, user) => {
-        console.log('user ==', user);
+        console.log('userz ==', user);
         if (err) {console.error(err);return done(err)}
         if (!user) {return done(null, false);}
         if (!user.validPassword(password)) {
